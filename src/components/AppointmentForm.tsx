@@ -13,7 +13,7 @@ export default function AppointmentForm({addAppointment}: AppointmentFormProps) 
     e.preventDefault();
 
     if (!name || !date) {
-      setErrorMessage("Please fill up the name and date fields.");
+      setErrorMessage("Please fill up the name and date fields!");
       setTimeout(() => {
         setErrorMessage("");
       }, 2000);
@@ -34,10 +34,10 @@ export default function AppointmentForm({addAppointment}: AppointmentFormProps) 
   return (
     <section>
       <form onSubmit={handleSubmit}>
+        {/* Full Name Input Form */}
         <div className='flex flex-col lg:flex-row w-full gap-2 px-4 py-2 mt-0 lg:mt-4 justify-between items-center'>
-          {/* Full Name Input Form */}
           <div className='text-2xl lg:text-lg font-bold mb-2 justify-center items-center'>
-            <label htmlFor='fname'>Full Name</label>
+            <label htmlFor='fname'>Full Name:</label>
           </div>
           <div>
             <input
@@ -47,12 +47,12 @@ export default function AppointmentForm({addAppointment}: AppointmentFormProps) 
               placeholder='Your Name...'
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className='w-[300px] md:w-[430px] lg:w-[530px] px-2 py-3 rounded-md'
+              className='w-[300px] md:w-[430px] lg:w-[530px] px-2 py-3 rounded-md focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600'
             />
           </div>
         </div>
         {/* Appointment Date */}
-        <div className='flex flex-col lg:flex-row w-full gap-2 px-4 py-2 mt-0 lg:mt-4 justify-between'>
+        <div className='flex flex-col lg:flex-row w-full gap-2 px-4 py-2 mt-0 lg:mt-4 justify-between items-center'>
           <div className='text-2xl lg:text-lg font-bold mb-2 flex justify-center items-center'>
             <label htmlFor='fname'>Appointment Date:</label>
           </div>
@@ -62,16 +62,17 @@ export default function AppointmentForm({addAppointment}: AppointmentFormProps) 
               id='fname'
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className='w-[300px] md:w-[430px] lg:w-[530px] px-2 py-3 rounded-md'
+              className='w-[300px] md:w-[430px] lg:w-[530px] px-2 py-3 rounded-md focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600'
             />
           </div>
         </div>
-        {/* Error message */}
+        {/* Error Message */}
         {errorMessage && (
           <div className='mt-4 pl-4'>
-            <p style={{color: "red"}}>{errorMessage}</p>
+            <p className='text-red-500 text-xl font-bold'>{errorMessage}</p>
           </div>
         )}
+        {/* Add Appointment */}
         <div className='flex justify-end w-full px-4 my-4 md:mt-2'>
           <button
             type='submit'

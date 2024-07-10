@@ -42,6 +42,7 @@ export default function AppointmentsService() {
 
   // CLEAR
   const clearAppointments = () => {
+    
     setAppoinments([]);
     return toast.error("Appointments all cleared.", {
       theme: "colored",

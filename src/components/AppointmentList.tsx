@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {FiEdit} from "react-icons/fi";
 import {MdDelete} from "react-icons/md";
-
+import {FaSave} from "react-icons/fa";
+import {MdCancel} from "react-icons/md";
 interface Appointment {
   id: number;
   name: string;
@@ -67,7 +68,7 @@ export default function AppointmentList({
           </thead>
           <tbody>
             {appointments.map((appointment) => (
-              <tr key={appointment.id} className='table-row'>
+              <tr key={appointment.id} className='table-row odd:bg-white even:bg-slate-100'>
                 <td className='table-cell px-2'>{appointment.id}</td>
                 {/* Full Name */}
                 <td className='table-cell px-2'>
@@ -101,27 +102,31 @@ export default function AppointmentList({
                   <div className='table-cell'>
                     {editedId === appointment.id ? (
                       <div className='flex gap-2 m-2'>
+                        {/* Save */}
                         <button
                           onClick={handleSaveEdit}
-                          className='bg-sky-600 text-slate-100 p-2 rounded-md'
+                          className='bg-sky-600 text-slate-100 p-4 rounded-md'
                         >
-                          Save
+                          <FaSave />
                         </button>
+                        {/* Cancel */}
                         <button
                           onClick={handleCancelEdit}
-                          className='bg-red-600 text-slate-100 p-2 rounded-md'
+                          className='bg-red-600 text-slate-100 p-4 rounded-md'
                         >
-                          Cancel
+                          <MdCancel />
                         </button>
                       </div>
                     ) : (
-                      <div className='flex gap-2 pl-4 pt-2'>
+                      <div className='flex gap-2 pl-4 p-2'>
+                        {/* Edit */}
                         <button
                           onClick={() => handleEdit(appointment.id)}
                           className='bg-green-600 text-slate-100 p-4 rounded-md'
                         >
                           <FiEdit />
                         </button>
+                        {/* Delete */}
                         <button
                           onClick={() => deleteAppointment(appointment.id)}
                           className='bg-red-600 text-slate-100 p-4 rounded-md'
@@ -137,6 +142,7 @@ export default function AppointmentList({
           </tbody>
         </table>
       </div>
+      {/* Clear Appointments */}
       <button
         type='submit'
         className='cursor-pointer text-lg font-bold bg-red-60 0px-4 py-2 rounded-md bg-red-600 mt-6 flex justify-end'
