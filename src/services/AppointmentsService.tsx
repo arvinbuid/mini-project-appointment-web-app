@@ -23,10 +23,13 @@ export default function AppointmentsService() {
   // DELETE/id
   const deleteAppointment = (id: number) => {
     const deletedAppointment = appointments.filter((appointment) => appointment.id !== id);
-    setAppoinments(deletedAppointment);
-    return toast.error("Appointment deleted.", {
-      theme: "colored",
-    });
+
+    if (window.confirm("Are you sure you want to delete this appointment?")) {
+      setAppoinments(deletedAppointment);
+      return toast.error("Appointment deleted.", {
+        theme: "colored",
+      });
+    }
   };
 
   // PUT
@@ -42,11 +45,12 @@ export default function AppointmentsService() {
 
   // CLEAR
   const clearAppointments = () => {
-    
-    setAppoinments([]);
-    return toast.error("Appointments all cleared.", {
-      theme: "colored",
-    });
+    if (window.confirm("Are you sure you want to clear all appointments?")) {
+      setAppoinments([]);
+      return toast.error("Appointments all cleared.", {
+        theme: "colored",
+      });
+    }
   };
 
   return (
